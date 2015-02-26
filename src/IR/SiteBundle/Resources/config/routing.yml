@@ -1,3 +1,7 @@
-ir_site_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: IRSiteBundle:Default:index }
+ir_site_project_list:
+    path:     /
+    defaults: { _controller: IRSiteBundle:Project:index }
+
+ir_site_issue_list:
+    path:     /issues
+    defaults: { _controller: IRSiteBundle:Issue:index }
