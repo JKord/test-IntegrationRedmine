@@ -1,7 +1,24 @@
 ir_site_project_list:
     path:     /
     defaults: { _controller: IRSiteBundle:Project:index }
+    methods:  [GET]
 
 ir_site_issue_list:
     path:     /projects/{id}/issues
     defaults: { _controller: IRSiteBundle:Issue:index }
+    methods:  [GET]
+    requirements:
+        id:  \d+
+
+ir_site_comment_list:
+    path:     /projects/{id}/comments
+    defaults: { _controller: IRSiteBundle:Comment:index }
+    methods:  [GET]
+    requirements:
+        id:  \d+
+ir_site_comment_add:
+    path:     /projects/{id}/comments/add
+    defaults: { _controller: IRSiteBundle:Comment:add }
+    methods:  [PUT]
+    requirements:
+        id:  \d+

@@ -9,7 +9,7 @@ class IssueController extends Controller
     /**
      * @Template()
      */
-    public function indexAction($id)
+    public function indexAction($projectId)
     {
         return array();
     }

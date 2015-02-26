@@ -4,3 +4,6 @@ parameters:
         Support: success
         Feature: info
         Bug: danger
+    api_status:
+        1: OK
+        4: Помилка
