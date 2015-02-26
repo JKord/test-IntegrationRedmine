@@ -1,0 +1,3 @@
+ir_site_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: IRSiteBundle:Default:index }

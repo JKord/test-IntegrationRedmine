@@ -1,0 +1,4 @@
+services:
+#    ir_redmine_api.example:
+#        class: IR\RedmineAPIBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
