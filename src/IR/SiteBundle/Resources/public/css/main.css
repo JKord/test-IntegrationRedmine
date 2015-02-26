@@ -14,6 +14,9 @@ html, body {
 h1, h2, h3, h4 {
 	font-family: 'Lobster', cursive;
 }
+h3, h4 {
+    font-family: cursive;
+}
 
 /*-------------------------------------------------------------------------------*/
 /*------------------------------------      -------------------------------------*/
@@ -21,6 +24,7 @@ h1, h2, h3, h4 {
 
 .thumbnail .caption h3 {
     margin-top: 0;
+    margin-bottom: 20px;
 }
 .thumbnail .caption span.badge {
     float: right;

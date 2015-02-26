@@ -5,19 +5,21 @@
         <h1>Проекти</h1>
     </div>
     <div class="row">
+      {% for project in projects %}
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <span class="badge">created_on</span>
-                    <h3>name</h3>
-                    <p>description</p>
+                    <span class="badge">{{ project.created_on }}</span>
+                    <h3>{{ project.name }}</h3>
+                    <p>{{ project.description }}</p>
                     <p>
-                        <a href="{{ path('ir_site_projects_issue_list', {'projectId': 1 }) }}" class="btn btn-primary" role="button">Переглянути</a>
+                        <a href="{{ path('ir_site_projects_issue_list', {'projectId': project.id }) }}" class="btn btn-primary" role="button">Таски</a>
                         <a href="#" class="btn btn-default" role="button">Коментарі</a>
                     </p>
                 </div>
             </div>
         </div>
+      {% endfor %}
     </div>
 {% endblock %}
 

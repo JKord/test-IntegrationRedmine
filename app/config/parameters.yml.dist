@@ -18,3 +18,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    #Redmine API service
+    redmine_url: https://redmine.ekreative.com
+    redmine_apiKey: 2fda745bb4cdd835fdf41ec1fab82a13ddc1a54c
