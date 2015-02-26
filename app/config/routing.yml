@@ -1,7 +1,3 @@
-ir_redmine_api:
-    resource: "@IRRedmineAPIBundle/Resources/config/routing.yml"
-    prefix:   /
-
 ir_site:
     resource: "@IRSiteBundle/Resources/config/routing.yml"
     prefix:   /
