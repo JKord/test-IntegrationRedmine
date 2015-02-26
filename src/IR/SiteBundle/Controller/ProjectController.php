@@ -1,12 +1,16 @@
 <?php
 namespace IR\SiteBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class ProjectController extends Controller
 {
+    /**
+     * @Template()
+     */
     public function indexAction()
     {
-        return $this->render('IRSiteBundle:Project:index.html.twig', array());
+        return array();
     }
 }

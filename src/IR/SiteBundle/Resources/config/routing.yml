@@ -3,5 +3,5 @@ ir_site_project_list:
     defaults: { _controller: IRSiteBundle:Project:index }
 
 ir_site_issue_list:
-    path:     /issues
+    path:     /projects/{id}/issues
     defaults: { _controller: IRSiteBundle:Issue:index }

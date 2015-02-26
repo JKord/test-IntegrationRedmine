@@ -1,12 +1,16 @@
 <?php
 namespace IR\SiteBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class IssueController extends Controller
 {
-    public function indexAction()
+    /**
+     * @Template()
+     */
+    public function indexAction($id)
     {
-        return $this->render('IRSiteBundle:Issue:index.html.twig', array());
+        return array();
     }
 }

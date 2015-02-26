@@ -1,0 +1,6 @@
+parameters:
+    trackers_color:
+        Task: primary
+        Support: success
+        Feature: info
+        Bug: danger

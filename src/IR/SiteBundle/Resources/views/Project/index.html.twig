@@ -1,7 +1,24 @@
 {% extends 'IRSiteBundle::layout.html.twig' %}
 
 {% block content %}
-<h1>Projects</h1>
+    <div class="page-header">
+        <h1>Проекти</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <span class="badge">created_on</span>
+                    <h3>name</h3>
+                    <p>description</p>
+                    <p>
+                        <a href="{{ path('ir_site_issue_list', {'id': 1 }) }}" class="btn btn-primary" role="button">Переглянути</a>
+                        <a href="#" class="btn btn-default" role="button">Коментарі</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

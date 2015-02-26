@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: data.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
@@ -29,6 +30,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        trackers_color: %trackers_color%
 
 # Assetic Configuration
 assetic:
