@@ -1,4 +1,0 @@
-services:
-#    ir_site.example:
-#        class: IR\SiteBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

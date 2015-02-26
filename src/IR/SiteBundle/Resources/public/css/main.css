@@ -1,0 +1,27 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic);
+/*-------------------------------------------------------------------------------*/
+/*------------------------------------GLOBAL-------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+html, body {
+	margin: 0;
+	padding: 0;
+    width: 100%;
+    height: 90%;
+	color: #2e2e2e;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Lobster', cursive;
+}
+
+/*-------------------------------------------------------------------------------*/
+/*------------------------------------      -------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+
+.thumbnail .caption h3 {
+    margin-top: 0;
+}
+.thumbnail .caption span.badge {
+    float: right;
+}
