@@ -64,4 +64,14 @@ class HRedmine
             'issues'      => $issuesByTracker
         );
     }
+
+    public function trackTime($issueId, $projectId, $hours, $comments = '')
+    {
+        return $this->client->api('timeEntry')->create(array(
+            'issue_id'    => $issueId,
+            'project_id'  => $projectId,
+            'hours'       => $hours,
+            'comments'    => $comments,
+        ));
+    }
 }

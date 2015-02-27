@@ -4,6 +4,8 @@ namespace IR\SiteBundle\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
     Symfony\Component\HttpFoundation\Request;
+use IR\SiteBundle\Form\TrackTimeType,
+    IR\SiteBundle\Model\TrackTime;
 
 class IssueController extends BaseController
 {
@@ -37,5 +39,37 @@ class IssueController extends BaseController
         $issuesHtml = $this->renderView('IRSiteBundle:Issue:issues.html.twig', array('issues' => $issues));
 
         return $this->getResponse(1, array('issuesHtml' =>  $issuesHtml));
+    }
+
+    /**
+     * @Template()
+     */
+    public function trackTimeAction(Request $request, $projectId, $issueId)
+    {
+        $trackTime = new TrackTime($projectId, $issueId);
+        $form = $this->createTrackTimeForm($trackTime);
+
+        if ('PUT' == $request->getMethod()) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+
+                return $this->redirect($this->generateUrl('ir_site_projects_issue', array('projectId' => $projectId)));
+            }
+        }
+
+        return array('trackTime' => $trackTime, 'form' => $form->createView());
+    }
+
+    private function createTrackTimeForm(TrackTime $trackTime)
+    {
+        $form = $this->createForm(new TrackTimeType(), $trackTime, array(
+            'action' => $this->generateUrl('ir_site_projects_issue_trackTime', array(
+                'projectId' => $trackTime->projectId,
+                'issueId' => $trackTime->issueId)),
+            'method' => 'PUT',
+        ));
+        $form->add('submit', 'submit', array('label' => 'Відправити'));
+
+        return $form;
     }
 }

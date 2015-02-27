@@ -23,6 +23,10 @@ ir_site_projects_issue_list:
     path:     /projects/{projectId}/issues
     defaults: { _controller: IRSiteBundle:Issue:getIssuesByTracker }
     methods:  [GET]
+ir_site_projects_issue_trackTime:
+    path:     /projects/{projectId}/issues/{issueId}
+    defaults: { _controller: IRSiteBundle:Issue:trackTime }
+    methods:  [GET|PUT]
 
 ir_site_projects_comment_list:
     path:     /projects/{projectId}/comments
