@@ -31,6 +31,56 @@ var App = {
             list.html('');
             e.stopPropagation();
         });
+    },
+
+    commentsUpdate: function(projectId) {
+        var list = $('#commentsList'), commentsHtml = '';
+        $.get('/projects/' + projectId + '/comments', function(data) {
+            if (data.code == 1) {
+                if(data.comments.length > 0) {
+                    $.each(data.comments, function(i, comment) {
+                        commentsHtml += ' <li class="list-group-item"><span class="badge">'+comment.authorName+'</span><p>'+comment.text+'</p></li>';
+                    });
+                } else {
+                    commentsHtml = '<li class="list-group-item">Коментарі відсутні</li>';
+                }
+                list.html(commentsHtml);
+            } else {
+                MessageApp.show(data);
+            }
+            preloader.off('disabled');
+        });
+    },
+    commentAdd: function(projectId, text) {
+        var self = this, list = $('#commentsList');
+        preloader.on();
+        $.ajax({ url: '/projects/' + projectId + '/comments/add', type: 'PUT', data: { text: text },
+            success: function(data) {
+                if (data.code == 1) {
+                    self.commentsUpdate(projectId);
+                } else {
+                    MessageApp.show(data);
+                    preloader.off('disabled');
+                }
+            }
+        });
+    },
+    commentsShow: function(project) {
+        var self = this;
+        BootstrapDialog.show({
+            title: 'Коментарі до ' + project.name,
+            message: ' <ul class="list-group" id="commentsList"></ul>',
+            buttons: [
+                { label: 'Додати коментар', action: function(d) { self.commentAdd(project.id, prompt("Текст коментаря", "")); }},
+                { label: 'Закрити', action: function(d) { d.close(); } },
+            ],
+            onshow: function(d) {
+                preloader.on();
+                setTimeout(function() {
+                    self.commentsUpdate(project.id);
+                }, 300);
+            }
+        });
     }
 };
 

@@ -14,19 +14,11 @@
                     <p>{{ project.description }}</p>
                     <p>
                         <a href="{{ path('ir_site_projects_issue', {'projectId': project.id }) }}" class="btn btn-primary" role="button">Таски</a>
-                        <a href="#" class="btn btn-default" role="button">Коментарі</a>
+                        <a href="#comments" class="btn btn-default" role="button" onclick="App.commentsShow({id: {{project.id }}, name: '{{ project.name }}'})">Коментарі</a>
                     </p>
                 </div>
             </div>
         </div>
       {% endfor %}
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-        });
-    </script>
 {% endblock %}
