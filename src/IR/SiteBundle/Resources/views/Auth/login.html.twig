@@ -1,0 +1,17 @@
+{% extends 'IRSiteBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <form class="form-signin" action="{{ path('ir_site_auth_loginCheck') }}" method="post">
+            <h2 class="form-signin-heading">Авторизуйтесь</h2>
+          {% if error %}
+              <div class="alert alert-danger" role="alert">{{ error.message }}</div>
+          {% endif %}
+            <label for="inputEmail" class="sr-only">Логін</label>
+            <input type="text" id="username" name="_username" class="form-control" placeholder="user" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Пароль</label>
+            <input type="password" id="password" name="_password" class="form-control" placeholder="userpass" required="">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Увійти</button>
+        </form>
+    </div>
+{% endblock %}
