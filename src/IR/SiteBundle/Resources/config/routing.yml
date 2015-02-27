@@ -1,3 +1,15 @@
+ir_site_auth_login:
+    path:     /login
+    defaults: { _controller: IRSiteBundle:Auth:login }
+    methods:  [GET]
+ir_site_auth_loginCheck:
+    path:     /login_check
+    defaults: { _controller: IRSiteBundle:Auth:securityCheck }
+    methods:  [POST]
+ir_site_auth_logout:
+    path:     /logout
+    defaults: { _controller: IRSiteBundle:Auth:logout }
+
 ir_site_project_list:
     path:     /
     defaults: { _controller: IRSiteBundle:Project:index }
