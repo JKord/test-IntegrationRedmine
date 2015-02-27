@@ -9,3 +9,4 @@
 /composer.phar
 .idea/
 /web/bundles/
+/app/data.db3

@@ -20,7 +20,7 @@ show_run("Changing permissions", "chmod -R 777 app/cache app/logs");
 
 show_run("Install assets", "php app/console assets:install --symlink");
 
-show_run("doctrine:schema:update", "php app/console doctrine:schema:update ");
+show_run("doctrine:schema:update", "php app/console doctrine:schema:update --force");
 
 // show_run("fixtures:load", "php app/console doctrine:fixtures:load"); // --no-interaction --append
 

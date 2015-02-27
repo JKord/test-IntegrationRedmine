@@ -4,12 +4,17 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--<parameters>-->
-        <!--<parameter key=".class"></parameter>-->
-    <!--</parameters>-->
+    <parameters>
+        <parameter key="ir.site.model.comment.class">IR\SiteBundle\Entity\Comment</parameter>
+    </parameters>
 
-    <!--<services>-->
-        <!--<service id="" class="%%" />-->
-    <!--</services>-->
+    <services>
+        <service id="ir.site.repository.comment"
+                 class="%ir.site.model.comment.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>%ir.site.model.comment.class%</argument>
+        </service>
+    </services>
 
 </container>
