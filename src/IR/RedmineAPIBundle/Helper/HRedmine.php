@@ -3,6 +3,13 @@ namespace IR\RedmineAPIBundle\Helper;
 
 use Redmine\Client;
 
+/**
+ * Class HRedmine - Helper API Client Redmine
+ * @package IR\RedmineAPIBundle\Helper
+ *
+ * if you have comments on the class name, I know that the agreement is not so correct.
+ * But it's for me comfortably. This is my style in this project. (RedmineHelper -> HRedmine)
+ */
 class HRedmine
 {
     private $client;
@@ -19,7 +26,28 @@ class HRedmine
         return $projects['projects'];
     }
 
-    public function getIssuesByTracker($projectId)
+    public function getProject($projectId)
+    {
+        $project = $this->client->api('project')->show($projectId);
+
+        return $project['project'];
+    }
+
+    public function getTrackers()
+    {
+        $trackers = $this->client->api('tracker')->all();
+
+        return $trackers['trackers'];
+    }
+
+    public function getIssuesByTracker($projectId, $trackerId)
+    {
+        $issues = $this->client->api('issue')->all(array('project_id' => $projectId, 'tracker_id' => $trackerId));
+
+        return $issues['issues'];
+    }
+
+    public function getTrackerIssues($projectId)
     {
         $issues = $this->client->api('issue')->all(array('project_id' => $projectId));
         $issuesByTracker = array();

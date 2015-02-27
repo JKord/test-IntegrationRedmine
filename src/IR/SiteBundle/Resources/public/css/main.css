@@ -18,6 +18,10 @@ h3, h4 {
     font-family: cursive;
 }
 
+.load-bar {
+    z-index: 2000;
+}
+
 /*-------------------------------------------------------------------------------*/
 /*------------------------------------      -------------------------------------*/
 /*-------------------------------------------------------------------------------*/
@@ -29,3 +33,8 @@ h3, h4 {
 .thumbnail .caption span.badge {
     float: right;
 }
+
+.panel .panel-heading { cursor: pointer; }
+.panel .panel-heading .panel-title .badge { float: right; }
+.panel .close { padding: 0; }
+.panel .close .list-group { margin-bottom: 0; }

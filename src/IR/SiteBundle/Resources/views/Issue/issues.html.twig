@@ -1,0 +1,7 @@
+{% for issue in issues %}
+    <li class="list-group-item">
+        <span class="badge">{{ issue.author.name }} / {{ issue.priority.name }} / {{ issue.created_on }}</span>
+        <h3>{{ issue.subject }}</h3>
+        <p>{{ issue.description }}</p>
+    </li>
+{% endfor %}

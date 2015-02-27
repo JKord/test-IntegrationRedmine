@@ -3,9 +3,13 @@ ir_site_project_list:
     defaults: { _controller: IRSiteBundle:Project:index }
     methods:  [GET]
 
+ir_site_projects_issue:
+    path:     /projects/{projectId}
+    defaults: { _controller: IRSiteBundle:Issue:index }
+    methods:  [GET]
 ir_site_projects_issue_list:
     path:     /projects/{projectId}/issues
-    defaults: { _controller: IRSiteBundle:Issue:index }
+    defaults: { _controller: IRSiteBundle:Issue:getIssuesByTracker }
     methods:  [GET]
 
 ir_site_projects_comment_list:

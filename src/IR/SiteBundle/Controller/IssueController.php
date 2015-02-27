@@ -1,11 +1,11 @@
 <?php
 namespace IR\SiteBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\DependencyInjection\ContainerInterface,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\DependencyInjection\ContainerInterface,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
+    Symfony\Component\HttpFoundation\Request;
 
-class IssueController extends Controller
+class IssueController extends BaseController
 {
     private $redmineApi;
 
@@ -20,11 +20,22 @@ class IssueController extends Controller
      */
     public function indexAction($projectId)
     {
-        $issuesByTracker = $this->redmineApi->getIssuesByTracker($projectId);
-
         return array(
-            'projectName'     => $issuesByTracker['projectName'],
-            'issuesByTracker' => $issuesByTracker['issues']
+            'project'  => $this->redmineApi->getProject($projectId),
+            'trackers' => $this->redmineApi->getTrackers()
         );
+    }
+
+    public function getIssuesByTrackerAction(Request $request, $projectId)
+    {
+        $trackerId = $request->get('trackerId');
+        if (empty($trackerId)) {
+            return $this->getResponse(4);
+        }
+
+        $issues = $this->redmineApi->getIssuesByTracker($projectId, $trackerId);
+        $issuesHtml = $this->renderView('IRSiteBundle:Issue:issues.html.twig', array('issues' => $issues));
+
+        return $this->getResponse(1, array('issuesHtml' =>  $issuesHtml));
     }
 }

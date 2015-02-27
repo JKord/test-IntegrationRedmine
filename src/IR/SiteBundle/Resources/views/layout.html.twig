@@ -9,6 +9,7 @@
 
     <link rel="icon" type="image/ico" href="favicon.ico">
     <link href="{{ asset(uriRes ~ 'css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset(uriRes ~ 'css/materialPreloader.min.css') }}" rel="stylesheet">
     <link href="{{ asset(uriRes ~ 'css/main.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,7 +42,8 @@
 <div id="mask"></div>
 
 <script src="{{ asset(uriRes ~ 'js/jquery.min.js') }}"></script>
-<script src="{{ asset(uriRes ~ 'js/bootstrap.js') }}"></script>
+<script src="{{ asset(uriRes ~ 'js/bootstrap.min.js') }}"></script>
+<script src="{{ asset(uriRes ~ 'js/materialPreloader.min.js') }}"></script>
 <script src="{{ asset(uriRes ~ 'js/app.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
