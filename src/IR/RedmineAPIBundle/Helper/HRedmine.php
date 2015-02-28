@@ -15,7 +15,7 @@ class HRedmine
     private $client;
 
     const PROJECT_LIMIT = 1000;
-    const ISSUE_LIMIT = 5;
+    const ISSUE_LIMIT = 10;
 
     public function __construct($url, $apiKey)
     {
