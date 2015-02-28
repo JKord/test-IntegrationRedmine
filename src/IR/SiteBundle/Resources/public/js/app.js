@@ -1,4 +1,5 @@
 var App = {
+
     init: function (callback) {
         if (callback !== undefined) {
             callback();
@@ -8,10 +9,11 @@ var App = {
     issuesByTracker: function(projectId, panel) {
         var  panelBody = panel.find('.panel-body'), list = panelBody.find('.list-group');
         preloader.on();
-        panelBody.addClass('close');
-        $.get('/projects/' + projectId + '/issues?trackerId=' + panel.data('id'), function(data) {
+        //panelBody.addClass('close');
+        $.get('/projects/' + projectId + '/issues?trackerId='+panel.data('id')+'&page='+panelBody.data('page'), function(data) {
             if (data.code == 1) {
                 panelBody.removeClass('close');
+                panelBody.data('pageLast', data.pageLast);
                 list.html(data.issuesHtml);
             } else {
                 list.html('');
@@ -28,8 +30,21 @@ var App = {
         $('#trackers').on('click', '.panel-heading .closePanel', function(e) {
             var panelBody = $(this).parent().parent().parent().find('.panel-body'), list = panelBody.find('.list-group');
             panelBody.addClass('close');
+            panelBody.data('page', 1);
             list.html('');
             e.stopPropagation();
+        });
+        $('#trackers').on('click', '.btn-group button', function() {
+            var panelBody = $(this).parent().parent(), page = parseInt(panelBody.data('page'));
+            if($(this).attr('id') == 'next') {
+                if(panelBody.data('pageLast')) return;
+                page++;
+            } else {
+                if(1 == page) return;
+                page--;
+            }
+            panelBody.data('page', page.toString());
+            self.issuesByTracker(projectId, panelBody.parent());
         });
     },
 

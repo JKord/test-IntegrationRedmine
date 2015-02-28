@@ -74,5 +74,7 @@ h3, h4 {
 
 .panel .panel-heading { cursor: pointer; }
 .panel .panel-heading .panel-title .badge { float: right; }
+.panel .btn-group { float: right; }
 .panel .close { padding: 0; }
 .panel .close .list-group { margin-bottom: 0; }
+.panel .close .btn-group { display: none; }

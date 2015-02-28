@@ -31,14 +31,21 @@ class IssueController extends BaseController
     public function getIssuesByTrackerAction(Request $request, $projectId)
     {
         $trackerId = $request->get('trackerId');
-        if (empty($trackerId)) {
+        $page = $request->get('page');
+        if (is_null($trackerId)) {
             return $this->getResponse(4);
         }
+        if (is_null($page)) {
+            $page = 1;
+        }
 
-        $issues = $this->redmineApi->getIssuesByTracker($projectId, $trackerId);
-        $issuesHtml = $this->renderView('IRSiteBundle:Issue:issues.html.twig', array('issues' => $issues));
+        $issues = $this->redmineApi->getIssuesByTracker($projectId, $trackerId, $page);
+        $issuesHtml = $this->renderView('IRSiteBundle:Issue:issues.html.twig', array('issues' => $issues['issues']));
 
-        return $this->getResponse(1, array('issuesHtml' =>  $issuesHtml));
+        return $this->getResponse(1, array(
+            'issuesHtml' =>  $issuesHtml,
+            'pageLast'   =>  ($issues['total_count'] <= $issues['offset'] + $issues['limit']),
+        ));
     }
 
     /**
@@ -53,6 +60,7 @@ class IssueController extends BaseController
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $this->redmineApi->trackTime($issueId, $projectId, $trackTime->hours, $trackTime->comments);
+                $request->getSession()->getFlashBag()->add('notice', 'Час затрекано');
 
                 return $this->redirect($this->generateUrl('ir_site_projects_issue', array('projectId' => $projectId)));
             }

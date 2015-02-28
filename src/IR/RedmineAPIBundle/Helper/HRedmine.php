@@ -14,6 +14,9 @@ class HRedmine
 {
     private $client;
 
+    const PROJECT_LIMIT = 1000;
+    const ISSUE_LIMIT = 5;
+
     public function __construct($url, $apiKey)
     {
         $this->client = new Client($url, $apiKey);
@@ -21,7 +24,7 @@ class HRedmine
 
     public function getProjects()
     {
-        $projects = $this->client->api('project')->all();
+        $projects = $this->client->api('project')->all(array('limit' => self::PROJECT_LIMIT));
 
         return $projects['projects'];
     }
@@ -40,11 +43,15 @@ class HRedmine
         return $trackers['trackers'];
     }
 
-    public function getIssuesByTracker($projectId, $trackerId)
+    public function getIssuesByTracker($projectId, $trackerId, $page = 1)
     {
-        $issues = $this->client->api('issue')->all(array('project_id' => $projectId, 'tracker_id' => $trackerId));
+        $issues = $this->client->api('issue')->all(array(
+            'project_id' => $projectId,
+            'tracker_id' => $trackerId,
+            'limit' => self::ISSUE_LIMIT, 'offset' => self::ISSUE_LIMIT * ($page - 1)
+        ));
 
-        return $issues['issues'];
+        return $issues;
     }
 
     public function getTrackerIssues($projectId)
