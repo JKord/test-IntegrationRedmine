@@ -1,3 +1,0 @@
-ir_redmine_api_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: IRRedmineAPIBundle:Default:index }

@@ -7,5 +7,7 @@
 /build/
 /vendor/
 /composer.phar
+/phpunit.phar
 .idea/
 /web/bundles/
+/app/data.db3

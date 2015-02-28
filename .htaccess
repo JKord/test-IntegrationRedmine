@@ -1,0 +1,15 @@
+AddDefaultCharset UTF-8
+
+<IfModule  mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /    
+    RewriteCond %{REQUEST_URI} !^.*update.php*
+    RewriteRule ^(.*)$ web//$1 [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ web//$1 [L]
+
+    SetEnv TZ Europe/Berlin
+</IfModule>
+
+ #SetEnv APPLICATION_ENV production

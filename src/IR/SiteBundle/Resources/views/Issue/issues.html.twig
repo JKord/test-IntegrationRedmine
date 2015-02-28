@@ -1,0 +1,8 @@
+{% for issue in issues %}
+    <li class="list-group-item">
+        <span class="badge">{{ issue.author.name }} / {{ issue.priority.name }} / {{ issue.created_on }}</span>
+        <h3>{{ issue.subject }}</h3>
+        <p>{{ issue.description }}</p>
+        <a href="{{ path('ir_site_projects_issue_trackTime', { projectId: issue.project.id, issueId: issue.id }) }}" class="btn btn-primary">Затрекатися</a>
+    </li>
+{% endfor %}
