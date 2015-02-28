@@ -46,18 +46,23 @@ class IssueController extends BaseController
      */
     public function trackTimeAction(Request $request, $projectId, $issueId)
     {
-        $trackTime = new TrackTime($projectId, $issueId);
+        $trackTime = new TrackTime($issueId, $projectId);
         $form = $this->createTrackTimeForm($trackTime);
 
         if ('PUT' == $request->getMethod()) {
             $form->handleRequest($request);
             if ($form->isValid()) {
+                $this->redmineApi->trackTime($issueId, $projectId, $trackTime->hours, $trackTime->comments);
 
                 return $this->redirect($this->generateUrl('ir_site_projects_issue', array('projectId' => $projectId)));
             }
         }
 
-        return array('trackTime' => $trackTime, 'form' => $form->createView());
+        return array(
+            'trackTime' => $trackTime,
+            'form'      => $form->createView(),
+            'issue'     => $this->redmineApi->getIssue($issueId)
+        );
     }
 
     private function createTrackTimeForm(TrackTime $trackTime)

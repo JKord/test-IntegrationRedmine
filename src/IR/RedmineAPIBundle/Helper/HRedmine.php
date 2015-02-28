@@ -65,9 +65,16 @@ class HRedmine
         );
     }
 
+    public function getIssue($issueId)
+    {
+        $issues = $this->client->api('issue')->show($issueId);
+
+        return $issues['issue'];
+    }
+
     public function trackTime($issueId, $projectId, $hours, $comments = '')
     {
-        return $this->client->api('timeEntry')->create(array(
+        return $this->client->api('time_entry')->create(array(
             'issue_id'    => $issueId,
             'project_id'  => $projectId,
             'hours'       => $hours,

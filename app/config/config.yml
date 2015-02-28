@@ -32,6 +32,8 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         trackers_color: %trackers_color%
+    form:
+         resources: ['bootstrap_3_horizontal_layout.html.twig']
 
 # Doctrine Configuration
 doctrine:

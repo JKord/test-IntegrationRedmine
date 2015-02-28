@@ -1,5 +1,8 @@
 {% extends 'IRSiteBundle::layout.html.twig' %}
 
 {% block content %}
+    <div class="page-header">
+        <h2>{{ issue.project.name }} / {{ issue.subject }} - Трекання</h2>
+    </div>
     {{ form(form) }}
 {% endblock %}

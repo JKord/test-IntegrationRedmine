@@ -16,8 +16,8 @@ class TrackTimeType extends AbstractType
         $builder
             ->add('issueId', 'hidden')
             ->add('projectId', 'hidden')
-            ->add('hours', 'text', array('label' => 'Годин'))
-            ->add('comments', 'text', array('label' => 'Коментар'))
+            ->add('hours', 'number', array('label' => 'Годин'))
+            ->add('comments', 'textarea', array('label' => 'Коментар'))
         ;
     }
 
